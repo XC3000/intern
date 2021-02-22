@@ -13,7 +13,7 @@ import {
 
 const { Meta } = Card;
 
-const ProfileItem = ({ profile, showModal, setProfile }) => {
+const ProfileItem = ({ profile, showModal, setProfile, handleEdit }) => {
   console.log(profile);
 
   /*   console.log("HeartFilled"); */
@@ -32,8 +32,9 @@ const ProfileItem = ({ profile, showModal, setProfile }) => {
           <EditOutlined
             key="edit"
             onClick={() => {
-              showModal();
-              setProfile(profile);
+              // showModal();
+              // setProfile(profile, 1);
+              handleEdit(profile, 1);
             }}
           />,
           <DeleteFilled key="delete" />,

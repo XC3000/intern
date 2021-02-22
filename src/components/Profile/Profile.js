@@ -30,6 +30,20 @@ const Profile = () => {
     setIsModalVisible(false);
   };
 
+  const handleEdit = (profileObj) => {
+    console.log(profileObj);
+    const { id, name, email, phone, website } = profileObj;
+    showModal();
+    setImmediate(() =>
+      form.setFieldsValue({
+        name,
+        email,
+        age: phone,
+        website,
+      })
+    );
+  };
+
   const layout = {
     labelCol: {
       span: 8,
@@ -55,8 +69,10 @@ const Profile = () => {
 
   if (profile) {
     form.setFieldsValue({
-      name: profile.name,
-      email: profile.email,
+      // name: profile.name,
+      // email: profile.email,
+      name: "Mujtaba",
+      email: "mujtababasheer14@gmail.com",
     });
   }
 
@@ -77,7 +93,8 @@ const Profile = () => {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={["user", "name"]}
+            // name={["user", "name"]}
+            name="name"
             label="Name"
             rules={[
               {
@@ -85,10 +102,11 @@ const Profile = () => {
               },
             ]}
           >
-            <Input value="rich" />
+            <Input />
           </Form.Item>
           <Form.Item
-            name={["user", "email"]}
+            // name={["user", "email"]}
+            name="email"
             label="Email"
             rules={[
               {
@@ -96,22 +114,17 @@ const Profile = () => {
               },
             ]}
           >
-            <Input value={profile.email} />
+            <Input />
           </Form.Item>
           <Form.Item
-            name={["user", "age"]}
+            // name={["user", "age"]}
+            name="age"
             label="Age"
-            rules={[
-              {
-                type: "number",
-                min: 0,
-                max: 99,
-              },
-            ]}
+            rules={[{ required: true }]}
           >
-            <InputNumber value={profile.phone} />
+            <Input />
           </Form.Item>
-          <Form.Item name={["user", "website"]} label="Website">
+          <Form.Item name="website" label="Website">
             <Input />
           </Form.Item>
           <Form.Item name={["user", "introduction"]} label="Introduction">
@@ -136,6 +149,7 @@ const Profile = () => {
               profile={profile}
               showModal={showModal}
               setProfile={setProfile}
+              handleEdit={handleEdit}
             />
           </div>
         ))}
