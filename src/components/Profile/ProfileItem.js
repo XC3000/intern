@@ -13,10 +13,23 @@ import {
 
 const { Meta } = Card;
 
-const ProfileItem = ({ profile, showModal, setProfile }) => {
-  console.log(profile);
-
-  /*   console.log("HeartFilled"); */
+const ProfileItem = ({
+  profile,
+  showModal,
+  setProfile,
+  profileItems,
+  setProfileItems,
+}) => {
+  const deleteProfile = (id) => {
+    let newArray = [...profileItems];
+    var removeIndex = newArray
+      .map(function (item) {
+        return item.id;
+      })
+      .indexOf(id);
+    newArray.splice(removeIndex, 1);
+    setProfileItems(newArray);
+  };
   return (
     <>
       <Card
@@ -36,7 +49,12 @@ const ProfileItem = ({ profile, showModal, setProfile }) => {
               setProfile(profile);
             }}
           />,
-          <DeleteFilled key="delete" />,
+          <DeleteFilled
+            key="delete"
+            onClick={() => {
+              deleteProfile(profile.id);
+            }}
+          />,
         ]}
       >
         <Meta title={profile.name} />
