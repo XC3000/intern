@@ -30,6 +30,20 @@ const Profile = () => {
     setIsModalVisible(false);
   };
 
+  const handleEdit = (profileObj) => {
+    setProfile(profileObj);
+    const { id, name, email, phone, website } = profileObj;
+    showModal();
+    setImmediate(() =>
+      form.setFieldsValue({
+        name,
+        email,
+        phone,
+        website,
+      })
+    );
+  };
+
   const layout = {
     labelCol: {
       span: 8,
@@ -52,15 +66,25 @@ const Profile = () => {
   const onFinish = (values) => {
     console.log(values);
 
-    
+    const elementsIndex = profileItems.findIndex(
+      (element) => element.id === profile.id
+    );
+    let newArray = [...profileItems];
+    newArray[elementsIndex] = {
+      ...values,
+    };
+
+    setProfileItems(newArray);
   };
 
-  if (profile) {
+  /* if (profile) {
     form.setFieldsValue({
-      name: profile.name,
-      email: profile.email,
+      // name: profile.name,
+      // email: profile.email,
+      /* name: "",
+      email: "",
     });
-  }
+  } */
 
   return (
     <div className="ant-row">
@@ -79,7 +103,8 @@ const Profile = () => {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={["user", "name"]}
+            // name={["user", "name"]}
+            name="name"
             label="Name"
             rules={[
               {
@@ -87,10 +112,11 @@ const Profile = () => {
               },
             ]}
           >
-            <Input value="rich" />
+            <Input />
           </Form.Item>
           <Form.Item
-            name={["user", "email"]}
+            // name={["user", "email"]}
+            name="email"
             label="Email"
             rules={[
               {
@@ -98,27 +124,20 @@ const Profile = () => {
               },
             ]}
           >
-            <Input value={profile.email} />
-          </Form.Item>
-          <Form.Item
-            name={["user", "age"]}
-            label="Age"
-            rules={[
-              {
-                type: "number",
-                min: 0,
-                max: 99,
-              },
-            ]}
-          >
-            <InputNumber value={profile.phone} />
-          </Form.Item>
-          <Form.Item name={["user", "website"]} label="Website">
             <Input />
           </Form.Item>
-          <Form.Item name={["user", "introduction"]} label="Introduction">
-            <Input.TextArea />
+          <Form.Item
+            // name={["user", "age"]}
+            name="phone"
+            label="Phone"
+            rules={[{ required: true }]}
+          >
+            <Input />
           </Form.Item>
+          <Form.Item name="website" label="Website">
+            <Input />
+          </Form.Item>
+
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">
               Submit
@@ -138,6 +157,7 @@ const Profile = () => {
               profile={profile}
               showModal={showModal}
               setProfile={setProfile}
+              handleEdit={handleEdit}
             />
           </div>
         ))}

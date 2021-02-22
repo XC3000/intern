@@ -19,6 +19,7 @@ const ProfileItem = ({
   setProfile,
   profileItems,
   setProfileItems,
+  handleEdit,
 }) => {
   const deleteProfile = (id) => {
     let newArray = [...profileItems];
@@ -30,6 +31,10 @@ const ProfileItem = ({
     newArray.splice(removeIndex, 1);
     setProfileItems(newArray);
   };
+
+  /* console.log(profile); */
+
+  /*   console.log("HeartFilled"); */
   return (
     <>
       <Card
@@ -45,8 +50,9 @@ const ProfileItem = ({
           <EditOutlined
             key="edit"
             onClick={() => {
-              showModal();
-              setProfile(profile);
+              // showModal();
+              // setProfile(profile, 1);
+              handleEdit(profile, 1);
             }}
           />,
           <DeleteFilled
