@@ -1,0 +1,44 @@
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.line {
+  border: solid 0.6px #e0e0e0;
+  background-color: #d8d8d8;
+  height: 0.4px;
+  width: 100%;
+  display: block;
+}
+
+.light-blue {
+  color: #80c5d0;
+}
+
+.yellow {
+  color: #f0c978;
+}
+
+.green-bg {
+  background: #7dd8a9;
+}
+
+.red-bg {
+  background: #fda18e;
+}
+
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
