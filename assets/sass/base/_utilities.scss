@@ -13,6 +13,10 @@
   font-weight: 700;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .line {
   border: solid 0.6px #e0e0e0;
   background-color: #d8d8d8;
@@ -29,6 +33,10 @@
   color: #f0c978;
 }
 
+.pinkish-pink {
+  color: #ff998f;
+}
+
 .green-bg {
   background: #7dd8a9;
 }
@@ -37,8 +45,14 @@
   background: #fda18e;
 }
 
+.silver-bg {
+  background: #bcbcbc;
+}
 
 .justify-content-end {
   justify-content: flex-end !important;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
